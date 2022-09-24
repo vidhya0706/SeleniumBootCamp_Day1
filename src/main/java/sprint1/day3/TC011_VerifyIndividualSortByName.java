@@ -1,35 +1,21 @@
 package sprint1.day3;
 
 
-import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
+import org.testng.annotations.Test;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+import sprint1.day1.BaseClass;
 
-public class TC011_VerifyIndividualSortByName {
+public class TC011_VerifyIndividualSortByName extends BaseClass {
 
-	public static void main(String[] args) throws InterruptedException {
+	@Test
+	public  void runVerifyIndividualSortByName() throws InterruptedException {
 	
-		WebDriverManager.chromedriver().setup();
-		ChromeOptions option =new ChromeOptions();
-		option.addArguments("--disable-notifications");
-		
-//1. Login to https://login.salesforce.com
-		ChromeDriver driver =new ChromeDriver(option);
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-		driver.get("https://login.salesforce.com/");
-		driver.manage().window().maximize();
-		driver.findElement(By.id("username")).sendKeys("hari.radhakrishnan@qeagle.com");
-		driver.findElement(By.id("password")).sendKeys("India$321");
-		driver.findElement(By.xpath("//input[@type='submit']")).click();
-		Thread.sleep(2000);
 //2. Click on the toggle menu button from the left corner
 		WebElement element = driver.findElement(By.xpath("//div[@class='slds-icon-waffle']"));
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
@@ -91,6 +77,7 @@ public class TC011_VerifyIndividualSortByName {
 		  {
 			  System.out.println("Individuals Not displayed in ascending order by Name");
 		  }
+	  
 	  }
                   
 	}

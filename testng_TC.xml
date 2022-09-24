@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+  <test thread-count="2" name="Test" parallel="classes" verbose="2">
+    <classes>
+      <class name="sprint1.day1.TC001_CreateNewOpportunity"/>
+      <class name="sprint1.day1.TC002_EditOpportunity"/>
+      <class name="sprint1.day1.TC003_DeleteOpportunity"/>
+      <class name="sprint1.day3.TC007_CreateIndividuals"/>
+      <class name="sprint1.day3.TC008_EditIndividuals"/>
+      <class name="sprint1.day3.TC009_DeleteIndividual"/>
+      <class name="sprint1.day3.TC010_IndividualWithOutMandatory"/>
+      <class name="sprint1.day3.TC011_VerifyIndividualSortByName"/>
+      <class name="sprint1.day4.TC012_CreateWorkType"/>
+      <class name="sprint1.day4.TC014_EditWorkType"/>
+      <class name="sprint1.day4.TC015_DeleteWorkType"/>
+      <class name="sprint1.day4.TC013_EditWorkTypeNegative"/>
+      <class name="sprint1.day4.TC016_WorkTypeAlertMessage"/> 
+      <class name="sprint1.day2.TC004_CreateAccount"/>
+      <class name="sprint1.day2.TC005_EditAccount"/>
+      <class name="sprint1.day2.TC006_DeleteAccount"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->

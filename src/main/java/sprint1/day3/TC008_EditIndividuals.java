@@ -1,32 +1,18 @@
 package sprint1.day3;
 
-import java.time.Duration;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import io.github.bonigarcia.wdm.WebDriverManager;
+import org.testng.annotations.Test;
 
-public class TC008_EditIndividuals {
+import sprint1.day1.BaseClass;
 
-public static void main(String[] args) throws InterruptedException {
-		
-		
-		WebDriverManager.chromedriver().setup();
-		ChromeOptions option =new ChromeOptions();
-		option.addArguments("--disable-notifications");
- //1. Login to https://login.salesforce.com
-		ChromeDriver driver =new ChromeDriver(option);
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-		driver.get("https://login.salesforce.com/");
-		driver.manage().window().maximize();
-		driver.findElement(By.id("username")).sendKeys("hari.radhakrishnan@qeagle.com");
-		driver.findElement(By.id("password")).sendKeys("India$321");
-		driver.findElement(By.xpath("//input[@type='submit']")).click();
-		Thread.sleep(2000);
+public class TC008_EditIndividuals extends BaseClass {
+
+@Test
+	public  void runEditIndividuals() throws InterruptedException {
+
 
 //2. Click on the toggle menu button from the left corner
 		WebElement element = driver.findElement(By.xpath("//div[@class='slds-icon-waffle']"));
@@ -46,7 +32,7 @@ public static void main(String[] args) throws InterruptedException {
 //4. Click on the Individuals tab 
 //5. Search the Individuals 'Kumar'
 		driver.findElement(By.xpath("//input[@class='slds-input']")).sendKeys("Vidhya"+Keys.ENTER);
-		Thread.sleep(200);
+		Thread.sleep(2000);
 		
 
 //6. Click on the Dropdown icon and Select Edit
@@ -79,5 +65,6 @@ public static void main(String[] args) throws InterruptedException {
        {
     	   System.out.println("Not edited");
        }
+     
 }
 }

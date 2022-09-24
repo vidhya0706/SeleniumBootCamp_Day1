@@ -1,32 +1,16 @@
 package sprint1.day2;
 
-import java.time.Duration;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
+import org.testng.annotations.Test;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+import sprint1.day1.BaseClass;
 
-public class TC004_CreateAccount {
+public class TC004_CreateAccount extends BaseClass {
 
-	public static void main(String[] args) throws InterruptedException {
-		
-		WebDriverManager.chromedriver().setup();
-		ChromeOptions option =new ChromeOptions();
-		option.addArguments("--disable-notifications");
-		    
- //1. Login to https://login.salesforce.com
-		ChromeDriver driver =new ChromeDriver(option);
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-		driver.get("https://login.salesforce.com/");
-		driver.manage().window().maximize();
-		driver.findElement(By.id("username")).sendKeys("hari.radhakrishnan@qeagle.com");
-		driver.findElement(By.id("password")).sendKeys("India$321");
-		driver.findElement(By.xpath("//input[@type='submit']")).click();
-		Thread.sleep(2000);
+	@Test
+	public  void runCreateAccount() throws InterruptedException {
 		
 //2. Click on toggle menu button from the left corner
 		WebElement element = driver.findElement(By.xpath("//div[@class='slds-icon-waffle']"));
@@ -74,6 +58,7 @@ public class TC004_CreateAccount {
 		  else {
 			  System.out.println("Account is not created");
 		  }
+		
 			}
 		  
 		

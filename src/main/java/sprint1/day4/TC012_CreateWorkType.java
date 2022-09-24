@@ -1,33 +1,17 @@
 package sprint1.day4;
 
-import java.time.Duration;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
+import org.testng.annotations.Test;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+import sprint1.day1.BaseClass;
 
-public class TC012_CreateWorkType {
+public class TC012_CreateWorkType extends BaseClass {
 	
-	public static void main(String[] args) throws InterruptedException {
+	@Test
+	public  void runCreateWorkType() throws InterruptedException {
 		
-		WebDriverManager.chromedriver().setup();
-		ChromeOptions option =new ChromeOptions();
-		option.addArguments("--disable-notifications");
-		
-//2) Click Login
-//3) Login with the credentials
-		ChromeDriver driver =new ChromeDriver(option);
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-		driver.get("https://login.salesforce.com/");
-		driver.manage().window().maximize();
-		driver.findElement(By.id("username")).sendKeys("hari.radhakrishnan@qeagle.com");
-		driver.findElement(By.id("password")).sendKeys("India$321");
-		driver.findElement(By.xpath("//input[@type='submit']")).click();
-		Thread.sleep(2000);
 //4) Click on the App Laucher Icon left to Setup
 		WebElement element = driver.findElement(By.xpath("//div[@class='slds-icon-waffle']"));
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
@@ -41,7 +25,7 @@ public class TC012_CreateWorkType {
 		WebElement element1 =driver.findElement(By.xpath("//p[@class='slds-truncate']"));
 		JavascriptExecutor executor1 = (JavascriptExecutor)driver;
 		executor1.executeScript("arguments[0].click();", element1);	
-		Thread.sleep(200);
+		Thread.sleep(2000);
 //7) Click on New
 		WebElement element2 = driver.findElement(By.xpath("//div[text()='New']"));
 		JavascriptExecutor executor2 = (JavascriptExecutor)driver;
@@ -70,6 +54,7 @@ public class TC012_CreateWorkType {
 			{
 		    System.out.println("New Work Type not created");	
 			}
+	
 		}
 	
 }
