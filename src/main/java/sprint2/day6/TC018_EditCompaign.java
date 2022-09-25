@@ -1,4 +1,4 @@
-package sprint1.day6;
+package sprint2.day6;
 
 import java.time.Duration;
 

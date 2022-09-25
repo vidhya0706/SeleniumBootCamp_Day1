@@ -1,4 +1,4 @@
-package sprint1.day6;
+package sprint2.day6;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
