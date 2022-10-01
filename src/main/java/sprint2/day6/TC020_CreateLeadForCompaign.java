@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.Test;
 
 import sprint1.day1.BaseClass;
@@ -49,18 +50,24 @@ public class TC020_CreateLeadForCompaign extends BaseClass {
 		Thread.sleep(2000);
 //13. Click Next
 		
+		Actions a = new Actions(driver);
+		//scroll down a page
+		a.sendKeys(Keys.PAGE_DOWN).build().perform();
+		
 		WebElement element3 =driver.findElement(By.xpath("//div[@title='Add Leads']"));
 		JavascriptExecutor executor3 = (JavascriptExecutor)driver;
 		executor3.executeScript("arguments[0].click();", element3);	
 		
 		driver.findElement(By.xpath("//input[@title='Search Leads']")).sendKeys("Sri vidhya"+Keys.ENTER);
+		Thread.sleep(2000);
 		driver.findElement(By.xpath("(//span[@class='slds-checkbox--faux'])[7]")).click();
 		driver.findElement(By.xpath("//button[@class='slds-button slds-button_neutral button-brand uiButton--default uiButton--brand uiButton']")).click();
 	  Thread.sleep(2000);
 //14. Click Submit on the Add to Campaign pop up
-		driver.findElement(By.xpath("//button[@class='slds-button slds-button_neutral button-brand uiButton--default uiButton--brand uiButton']")).click();
+	  driver.findElement(By.xpath("//button[@class='slds-button slds-button_neutral button-brand uiButton--default uiButton--brand uiButton']")).click();
+      Thread.sleep(2000);
 //15. verify the created Lead under Campaign
-		driver.findElement(By.xpath("(//span[@class='view-all-label'])[2]")).click();
+		driver.findElement(By.xpath("//span[@class='view-all-label']")).click();
 		String text = driver.findElement(By.xpath("(//table)[3]/tbody/tr/td[4]")).getText();
 		if(text.contains("Sri Vidhya"))
 		{
@@ -79,6 +86,7 @@ public class TC020_CreateLeadForCompaign extends BaseClass {
 		executor4.executeScript("arguments[0].click();", element4);	
 		
 		driver.findElement(By.xpath("//input[@name='Lead-search-input']")).sendKeys("Sri Vidhya"+Keys.ENTER);
+		Thread.sleep(2000);
 		String text1 = driver.findElement(By.xpath("//table/tbody/tr/th")).getText();
 	   if(text1.contains("Sri Vidhya"))
 	   {

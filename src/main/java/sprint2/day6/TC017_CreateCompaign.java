@@ -17,6 +17,7 @@ public class TC017_CreateCompaign extends BaseClass {
 		WebElement element = driver.findElement(By.xpath("//div[@class='slds-icon-waffle']"));
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
 		executor.executeScript("arguments[0].click();", element);
+		Thread.sleep(2000);
 //3. Click view All and click Sales from App Launcher
 		driver.findElement(By.xpath("//button[@class='slds-button']")).click();
 		driver.findElement(By.xpath("//input[@class='slds-input']")).sendKeys("Sales");

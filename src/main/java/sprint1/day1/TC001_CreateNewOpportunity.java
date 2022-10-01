@@ -1,14 +1,26 @@
 package sprint1.day1;
 
+import java.io.IOException;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class TC001_CreateNewOpportunity extends BaseClass {
 
-	@Test
-	public  void runCreateOpportunity() throws InterruptedException {
+	@DataProvider
+	public String[][] sendData() throws IOException
+	{
+		ReadExcel rd = new ReadExcel();
+		String[][] exceldata=rd.excelData();
+		
+		return exceldata;
+	}
+	
+	@Test(dataProvider="sendData")
+	public  void runCreateOpportunity(String name) throws InterruptedException {
 		
 //2. Click on toggle menu button from the left corner
 	
@@ -37,7 +49,7 @@ public class TC001_CreateNewOpportunity extends BaseClass {
 	driver.findElement(By.xpath("//div[text()='New']")).click();
 			
 //6. Enter Opportunity name as 'Salesforce Automation by Your Name,Get the text and Store it 
-	driver.findElement(By.xpath("//input[@name='Name']")).sendKeys("Salesforce Automation by Srividhya");
+	driver.findElement(By.xpath("//input[@name='Name']")).sendKeys(name);
 			
 	
 //7. Choose close date as Today
@@ -73,7 +85,8 @@ public class TC001_CreateNewOpportunity extends BaseClass {
 
   
 	}
-	
-
 
 }
+
+
+
