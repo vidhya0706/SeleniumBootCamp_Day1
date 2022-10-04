@@ -4,14 +4,20 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import sprint1.day1.BaseClass;
 
 public class TC006_DeleteAccount extends BaseClass {
+	
+	@BeforeTest
+	public void setdata() {
+		 excelfilename= "./data/createAccount.xlsx";
+	}
 
-	@Test
-	public  void runDeleteAccount() throws InterruptedException {
+	@Test(dataProvider="sendData")
+	public  void runDeleteAccount(String name) throws InterruptedException {
 		
 //2. Click on toggle menu button from the left corner
 		WebElement element = driver.findElement(By.xpath("//div[@class='slds-icon-waffle']"));

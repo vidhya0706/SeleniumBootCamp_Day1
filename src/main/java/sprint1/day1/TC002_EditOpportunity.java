@@ -4,12 +4,18 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 public class TC002_EditOpportunity extends BaseClass {
 	
-	@Test
-	public  void runEditOpportunity() throws InterruptedException {
+	@BeforeTest
+	public void setdata() {
+		 excelfilename= "./data/EditOpp.xlsx";
+	}
+	
+	@Test(dataProvider="sendData")
+	public  void runEditOpportunity(String description) throws InterruptedException {
 			
 //2. Click on toggle menu button from the left corner
 		
@@ -68,7 +74,7 @@ public class TC002_EditOpportunity extends BaseClass {
 			
 		//10. Enter Description as SalesForce
 		
-		driver.findElement(By.xpath("//textarea[@class='slds-textarea']")).sendKeys("Salesforce");
+		driver.findElement(By.xpath("//textarea[@class='slds-textarea']")).sendKeys(description);
 		
 		//11. Click on Save and Verify Stage as Perception Analysis
 		

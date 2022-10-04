@@ -2,16 +2,14 @@ package sprint1.day1;
 
 import java.io.IOException;
 
-import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class ReadExcel {
 
-	public  String[][] excelData() throws IOException {
+	public  String[][] excelData(String excelfilename) throws IOException {
 
-		XSSFWorkbook wb= new XSSFWorkbook("./data/createopportunity.xlsx");
+		XSSFWorkbook wb= new XSSFWorkbook(excelfilename);
 		XSSFSheet ws = wb.getSheet("sheet1");
 		
 		int rowNum= ws.getLastRowNum();

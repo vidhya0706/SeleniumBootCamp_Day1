@@ -1,5 +1,6 @@
 package sprint1.day1;
 
+import java.io.IOException;
 import java.time.Duration;
 
 import org.openqa.selenium.By;
@@ -7,6 +8,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Parameters;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -14,6 +16,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 public class BaseClass {
 	
 	public ChromeDriver driver;
+	public String excelfilename;
 	
 	@Parameters({"url","username","password"})
 	@BeforeMethod
@@ -37,6 +40,15 @@ public class BaseClass {
 	public  void postConditions() {
 		
 	driver.close();
+	}
+	
+	@DataProvider
+	public String[][] sendData() throws IOException
+	{
+		ReadExcel rd = new ReadExcel();
+		String[][] exceldata=rd.excelData(excelfilename);
+		
+		return exceldata;
 	}
 	
 	}

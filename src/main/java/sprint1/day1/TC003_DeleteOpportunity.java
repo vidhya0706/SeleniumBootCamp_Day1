@@ -4,12 +4,18 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 public class TC003_DeleteOpportunity extends BaseClass {
+	
+	@BeforeTest
+	public void setdata() {
+		 excelfilename= "./data/deleteOpp.xlsx";
+	}
 
-	@Test
-	public  void runDeleteOpportunity() throws InterruptedException {
+	@Test(dataProvider="sendData")
+	public  void runDeleteOpportunity(String name) throws InterruptedException {
 			
 //2. Click on toggle menu button from the left corner
 		WebElement element = driver.findElement(By.xpath("//div[@class='slds-icon-waffle']"));
@@ -31,7 +37,7 @@ public class TC003_DeleteOpportunity extends BaseClass {
 		executor2.executeScript("arguments[0].click();", element2);
 			
 //5. Search the Opportunity 'Salesforce Automation by Your Name'
-		driver.findElement(By.xpath("//input[@class='slds-input']")).sendKeys("Salesforce Automation by Srividhya"+Keys.ENTER);
+		driver.findElement(By.xpath("//input[@class='slds-input']")).sendKeys(name +Keys.ENTER);
 		Thread.sleep(2000);
 		
 //6. Click on  the Dropdown icon and Select Delete

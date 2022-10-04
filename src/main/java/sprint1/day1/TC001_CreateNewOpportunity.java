@@ -1,26 +1,20 @@
 package sprint1.day1;
 
-import java.io.IOException;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
-import org.testng.annotations.DataProvider;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 public class TC001_CreateNewOpportunity extends BaseClass {
 
-	@DataProvider
-	public String[][] sendData() throws IOException
-	{
-		ReadExcel rd = new ReadExcel();
-		String[][] exceldata=rd.excelData();
-		
-		return exceldata;
-	}
+@BeforeTest
+public void setdata() {
+	 excelfilename= "./data/createopportunity.xlsx";
+}
 	
-	@Test(dataProvider="sendData")
-	public  void runCreateOpportunity(String name) throws InterruptedException {
+@Test(dataProvider="sendData")
+public  void runCreateOpportunity(String name) throws InterruptedException {
 		
 //2. Click on toggle menu button from the left corner
 	
