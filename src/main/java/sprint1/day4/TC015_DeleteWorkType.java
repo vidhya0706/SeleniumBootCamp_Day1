@@ -10,10 +10,13 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
 import sprint1.day1.BaseClass;
+import sprint1.day1.RetryFailedTests;
 
 public class TC015_DeleteWorkType extends BaseClass {
 
-	@Test
+	
+	
+	@Test(retryAnalyzer =RetryFailedTests.class)
 	public  void runDeleteWorkType() throws InterruptedException {
 		
 //	4) Click on the App Laucher Icon left to Setup

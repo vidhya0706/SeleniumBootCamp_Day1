@@ -3,14 +3,22 @@ package sprint1.day4;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import sprint1.day1.BaseClass;
+import sprint1.day1.RetryFailedTests;
 
 public class TC013_EditWorkTypeNegative extends BaseClass {
 	
-@Test	
-public void runEditWorkTypeNegative() throws InterruptedException {
+	@BeforeTest
+	public void setdata() {
+		 excelfilename= "./data/editworktype.xlsx";
+	}
+
+	
+@Test(dataProvider="sendData",retryAnalyzer =RetryFailedTests.class)	
+public void runEditWorkTypeNegative(String starttime,String endtime,String name) throws InterruptedException {
 		
 //4) Click on the App Laucher Icon left to Setup
 		WebElement element = driver.findElement(By.xpath("//div[@class='slds-icon-waffle']"));
@@ -37,11 +45,11 @@ public void runEditWorkTypeNegative() throws InterruptedException {
 		
 		WebElement element3=driver.findElement(By.xpath("(//input[@type='text'])[6]"));
 		//element3.clear();
-		element3.sendKeys("9");
+		element3.sendKeys(starttime);
 //10) Enter Time Frame End as '6'
 		WebElement element4=driver.findElement(By.xpath("(//input[@type='text'])[7]"));
 		//element4.clear();
-		element4.sendKeys("6");
+		element4.sendKeys(endtime);
 //11) Click on Save
 		WebElement element5=driver.findElement(By.xpath("(//span[text()='Save'])[2]"));
 		JavascriptExecutor executor5 = (JavascriptExecutor)driver;
@@ -50,8 +58,17 @@ public void runEditWorkTypeNegative() throws InterruptedException {
 		
 //Expexted Result:
 //The Error message should be displayed
+//		if(toastText.contains(name))
+//		{
+//			System.out.println("Edited successfully");
+//		}
+//		else {
+//			System.out.println("Not edited successfully");
+//		}
+		
+}
 		
 		}
 		
 
-}
+

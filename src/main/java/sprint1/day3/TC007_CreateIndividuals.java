@@ -3,14 +3,21 @@ package sprint1.day3;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import sprint1.day1.BaseClass;
+import sprint1.day1.RetryFailedTests;
 
 public class TC007_CreateIndividuals extends BaseClass {
+	
+	@BeforeTest
+	public void setdata() {
+		 excelfilename= "./data/createIndividuals.xlsx";
+	}
 
-	@Test
-	public  void runCreateIndividuals() throws InterruptedException {
+	@Test(dataProvider="sendData",retryAnalyzer =RetryFailedTests.class)
+	public  void runCreateIndividuals(String name) throws InterruptedException {
 		
 //2. Click on the toggle menu button from the left corner
 		WebElement element = driver.findElement(By.xpath("//div[@class='slds-icon-waffle']"));
@@ -34,7 +41,7 @@ public class TC007_CreateIndividuals extends BaseClass {
 		JavascriptExecutor executor2 = (JavascriptExecutor)driver;
 		executor2.executeScript("arguments[0].click();", element2);	
 //6. Enter the Last Name as 'Vidhya'
-		driver.findElement(By.xpath("(//input[@type='text'])[2]")).sendKeys("Vidhya");
+		driver.findElement(By.xpath("(//input[@type='text'])[2]")).sendKeys(name);
 		
 //7.Click save and verify Individuals Name
 		driver.findElement(By.xpath("(//span[text()='Save'])[2]")).click();
@@ -46,7 +53,7 @@ public class TC007_CreateIndividuals extends BaseClass {
 		
 //Expected result:
 //The Individuals is created Successfully
-		if(text.contains("Vidhya"))
+		if(text.contains(name))
 		{
 			System.out.println("created Successfully");
 		}

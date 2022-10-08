@@ -3,15 +3,22 @@ package sprint1.day4;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import sprint1.day1.BaseClass;
+import sprint1.day1.RetryFailedTests;
 
 public class TC016_WorkTypeAlertMessage extends BaseClass {
 	
+	@BeforeTest
+	public void setdata() {
+		 excelfilename= "./data/editworktypealert.xlsx";
+	}
 	
-@Test
-	public  void runWorkTypeAlertMessage() throws InterruptedException {
+	
+@Test(dataProvider="sendData",retryAnalyzer =RetryFailedTests.class)
+	public  void runWorkTypeAlertMessage(String name) throws InterruptedException {
 	
 //4) Click on the App Laucher Icon left to Setup
 		WebElement element = driver.findElement(By.xpath("//div[@class='slds-icon-waffle']"));
@@ -33,7 +40,7 @@ public class TC016_WorkTypeAlertMessage extends BaseClass {
 		executor2.executeScript("arguments[0].click();", element2);	
 	//8) Enter Work Type Name as 'Bootcamp'
 	//9) Click on Save
-		driver.findElement(By.xpath("//input[@class=' input']")).sendKeys("Bootcamp");
+		driver.findElement(By.xpath("//input[@class=' input']")).sendKeys(name);
 		driver.findElement(By.xpath("(//span[text()='Save'])[2]")).click();
 	
 	//Expexted Result:

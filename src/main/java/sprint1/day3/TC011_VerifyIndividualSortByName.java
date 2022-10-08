@@ -10,10 +10,11 @@ import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 
 import sprint1.day1.BaseClass;
+import sprint1.day1.RetryFailedTests;
 
 public class TC011_VerifyIndividualSortByName extends BaseClass {
 
-	@Test
+	@Test(retryAnalyzer =RetryFailedTests.class)
 	public  void runVerifyIndividualSortByName() throws InterruptedException {
 	
 //2. Click on the toggle menu button from the left corner
@@ -54,7 +55,7 @@ public class TC011_VerifyIndividualSortByName extends BaseClass {
 		
 	  List<WebElement> rowCount1 =driver.findElements(By.xpath("//table[@role='grid']/tbody/tr"));
 	  int size1 = rowCount1.size();
-	  Thread.sleep(200);
+	  Thread.sleep(2000);
 
 	
 	  System.out.println(size1);

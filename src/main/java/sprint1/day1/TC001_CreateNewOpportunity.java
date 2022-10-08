@@ -13,7 +13,7 @@ public void setdata() {
 	 excelfilename= "./data/createopportunity.xlsx";
 }
 	
-@Test(dataProvider="sendData")
+@Test (dataProvider="sendData",retryAnalyzer =RetryFailedTests.class )
 public  void runCreateOpportunity(String name) throws InterruptedException {
 		
 //2. Click on toggle menu button from the left corner

@@ -8,6 +8,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import sprint1.day1.BaseClass;
+import sprint1.day1.RetryFailedTests;
 
 public class TC005_EditAccount extends BaseClass {
 	
@@ -16,7 +17,7 @@ public class TC005_EditAccount extends BaseClass {
 		 excelfilename= "./data/editAccount.xlsx";
 	}
 	
-	@Test(dataProvider="sendData")
+	@Test(dataProvider="sendData",retryAnalyzer =RetryFailedTests.class)
 	public  void runEditAccount(String name,String shipaddress,String billingaddress,String phno) throws InterruptedException {
 		
 //4) Click on the App Laucher Icon left to Setup

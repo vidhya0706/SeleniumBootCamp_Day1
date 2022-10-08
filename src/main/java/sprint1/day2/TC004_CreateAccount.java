@@ -7,6 +7,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import sprint1.day1.BaseClass;
+import sprint1.day1.RetryFailedTests;
 
 public class TC004_CreateAccount extends BaseClass {
 	
@@ -15,7 +16,7 @@ public class TC004_CreateAccount extends BaseClass {
 		 excelfilename= "./data/createAccount.xlsx";
 	}
 
-	@Test(dataProvider="sendData")
+	@Test(dataProvider="sendData",retryAnalyzer =RetryFailedTests.class)
 	public  void runCreateAccount(String name) throws InterruptedException {
 		
 //2. Click on toggle menu button from the left corner

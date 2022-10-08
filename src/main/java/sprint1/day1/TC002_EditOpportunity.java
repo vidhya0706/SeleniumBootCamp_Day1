@@ -14,7 +14,7 @@ public class TC002_EditOpportunity extends BaseClass {
 		 excelfilename= "./data/EditOpp.xlsx";
 	}
 	
-	@Test(dataProvider="sendData")
+	@Test(dataProvider="sendData",retryAnalyzer =RetryFailedTests.class)
 	public  void runEditOpportunity(String description) throws InterruptedException {
 			
 //2. Click on toggle menu button from the left corner

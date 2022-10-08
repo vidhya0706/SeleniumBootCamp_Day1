@@ -3,14 +3,22 @@ package sprint1.day4;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import sprint1.day1.BaseClass;
+import sprint1.day1.RetryFailedTests;
 
 public class TC012_CreateWorkType extends BaseClass {
 	
-	@Test
-	public  void runCreateWorkType() throws InterruptedException {
+	
+	@BeforeTest
+	public void setdata() {
+		 excelfilename= "./data/createworktype.xlsx";
+	}
+	
+	@Test(dataProvider="sendData",retryAnalyzer =RetryFailedTests.class)
+	public  void runCreateWorkType(String description,String duration,String worktype) throws InterruptedException {
 		
 //4) Click on the App Laucher Icon left to Setup
 		WebElement element = driver.findElement(By.xpath("//div[@class='slds-icon-waffle']"));
@@ -32,13 +40,13 @@ public class TC012_CreateWorkType extends BaseClass {
 		executor2.executeScript("arguments[0].click();", element2);	
 		
 //8) Enter Work Type Name as 'Salesforce Project'
-		driver.findElement(By.xpath("//input[@type='text']")).sendKeys("Salesforce Project");
+		driver.findElement(By.xpath("//input[@type='text']")).sendKeys(worktype);
 //9) Enter Description as 'Specimen'
-		driver.findElement(By.xpath("//textarea[@class=' textarea']")).sendKeys("Specimen");
+		driver.findElement(By.xpath("//textarea[@class=' textarea']")).sendKeys(description);
 //10) Create new operating hours by Entering a name as 'UK Shift'
 		driver.findElement(By.xpath("//input[@class=' default input uiInput uiInputTextForAutocomplete uiInput--default uiInput--input uiInput uiAutocomplete uiInput--default uiInput--lookup']")).sendKeys("UK Shift");
 //11) Enter Estimated Duration as '7'
-		driver.findElement(By.xpath("//input[@class='input uiInputSmartNumber']")).sendKeys("7");
+		driver.findElement(By.xpath("//input[@class='input uiInputSmartNumber']")).sendKeys(duration);
 //12 Click on Save
 		driver.findElement(By.xpath("//button[@title='Save']")).click();
 //13 Verify the Created message 
@@ -47,11 +55,11 @@ public class TC012_CreateWorkType extends BaseClass {
 		//Expexted Result:
 		//The New Work Type should be created successfully 
 		
-		if(text.contains("Salesforce")) {
-			System.out.println("New Work Type created successfully");
-		}
-			else
-			{
+		if(text.contains(worktype)) {
+		System.out.println("New Work Type created successfully");
+	}
+		else
+		{
 		    System.out.println("New Work Type not created");	
 			}
 	

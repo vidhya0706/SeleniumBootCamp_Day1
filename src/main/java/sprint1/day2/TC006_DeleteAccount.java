@@ -8,6 +8,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import sprint1.day1.BaseClass;
+import sprint1.day1.RetryFailedTests;
 
 public class TC006_DeleteAccount extends BaseClass {
 	
@@ -16,7 +17,7 @@ public class TC006_DeleteAccount extends BaseClass {
 		 excelfilename= "./data/createAccount.xlsx";
 	}
 
-	@Test(dataProvider="sendData")
+	@Test(dataProvider="sendData",retryAnalyzer =RetryFailedTests.class)
 	public  void runDeleteAccount(String name) throws InterruptedException {
 		
 //2. Click on toggle menu button from the left corner

@@ -4,14 +4,20 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import sprint1.day1.BaseClass;
+import sprint1.day1.RetryFailedTests;
 
 public class TC008_EditIndividuals extends BaseClass {
 
-@Test
-	public  void runEditIndividuals() throws InterruptedException {
+	@BeforeTest
+	public void setdata() {
+		 excelfilename= "./data/editIndividuals.xlsx";
+	}
+@Test(dataProvider="sendData",retryAnalyzer =RetryFailedTests.class)
+	public  void runEditIndividuals(String name,String fname) throws InterruptedException {
 
 
 //2. Click on the toggle menu button from the left corner
@@ -27,11 +33,11 @@ public class TC008_EditIndividuals extends BaseClass {
 		WebElement element1 =driver.findElement(By.xpath("//p[@class='slds-truncate']"));
 		JavascriptExecutor executor1 = (JavascriptExecutor)driver;
 		executor1.executeScript("arguments[0].click();", element1);	
-		Thread.sleep(200);
+		Thread.sleep(2000);
 		
 //4. Click on the Individuals tab 
-//5. Search the Individuals 'Kumar'
-		driver.findElement(By.xpath("//input[@class='slds-input']")).sendKeys("Vidhya"+Keys.ENTER);
+//5. Search the Individuals 'vidhya'
+		driver.findElement(By.xpath("//input[@class='slds-input']")).sendKeys(name  +Keys.ENTER);
 		Thread.sleep(2000);
 		
 
@@ -48,7 +54,7 @@ public class TC008_EditIndividuals extends BaseClass {
         drDown.click();
         driver.findElement(By.xpath("//a[@title='Mrs.']")).click();
 //8.Enter the first name as 'Sri'.
-        driver.findElement(By.xpath("//input[@class='firstName compoundBorderBottom form-element__row input']")).sendKeys("Sri");
+        driver.findElement(By.xpath("//input[@class='firstName compoundBorderBottom form-element__row input']")).sendKeys(fname);
 //9. Click on Save and Verify the first name as 'sri'
         
        driver.findElement(By.xpath("(//span[text()='Save'])[2]")).click();
@@ -57,7 +63,7 @@ public class TC008_EditIndividuals extends BaseClass {
        String text = driver.findElement(By.xpath("//tbody/tr[1]/th//a")).getText();
        
        System.out.println(text);
-       if(text.contains("Sri"))
+       if(text.contains(fname))
        {
     	   System.out.println("Edited successfully");
        }

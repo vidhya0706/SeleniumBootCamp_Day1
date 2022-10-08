@@ -14,7 +14,7 @@ public class TC003_DeleteOpportunity extends BaseClass {
 		 excelfilename= "./data/deleteOpp.xlsx";
 	}
 
-	@Test(dataProvider="sendData")
+	@Test(dataProvider="sendData",retryAnalyzer =RetryFailedTests.class)
 	public  void runDeleteOpportunity(String name) throws InterruptedException {
 			
 //2. Click on toggle menu button from the left corner
